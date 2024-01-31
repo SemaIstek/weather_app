@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>621</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 0px;</string>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="rowCount">
+     <number>3</number>
+    </property>
+    <property name="columnCount">
+     <number>5</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <item row="0" column="0">
+     <property name="text">
+      <string>7 °C</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>15 °C</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>17 °C</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>11 °C</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>5 °C</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>cloudly</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../Downloads/pngwing.com.png</normaloff>../../Downloads/pngwing.com.png</iconset>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>sunny</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-download-cartoon-font-natural-yellow-sun-weather-5a8cd084555fc9.2840460115191778603497.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="2">
+     <property name="text">
+      <string>    sunny</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-download-cartoon-font-natural-yellow-sun-weather-5a8cd084555fc9.2840460115191778603497.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="3">
+     <property name="text">
+      <string> cloudly</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/pngwing.com.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="4">
+     <property name="text">
+      <string>   cloudly</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/cloud-github-cloud-computing-multicloud-readme-google-cloud-platform-amazon-web-services-rackspace-png-clipart.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>9.00</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>12.00</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="2" column="2">
+     <property name="text">
+      <string>15.00</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="2" column="3">
+     <property name="text">
+      <string>18.00</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item row="2" column="4">
+     <property name="text">
+      <string>21.00</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>620</y>
+      <width>601</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: transparent</string>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="rowCount">
+     <number>3</number>
+    </property>
+    <property name="columnCount">
+     <number>4</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>124</number>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <row>
+     <property name="text">
+      <string>Today</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Tomorrow</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Wednesday</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Day</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>170</red>
+       <green>170</green>
+       <blue>127</blue>
+      </color>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Night</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Humudity</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Wind</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>15 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-download-cartoon-font-natural-yellow-sun-weather-5a8cd084555fc9.2840460115191778603497.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>    7 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/cloud-github-cloud-computing-multicloud-readme-google-cloud-platform-amazon-web-services-rackspace-png-clipart.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>    %3</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/png-transparent-drop-water-computer-icons-symbol-water-blue-drop-logo.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>       2 km/h</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-wind-computer-icons-symbol-weather-forecasting-wea-5b00db754435f5.9986446215267828372794.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string> 14 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-download-cartoon-font-natural-yellow-sun-weather-5a8cd084555fc9.2840460115191778603497.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>    7 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/cloud-github-cloud-computing-multicloud-readme-google-cloud-platform-amazon-web-services-rackspace-png-clipart.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="2">
+     <property name="text">
+      <string>    %5</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/png-transparent-drop-water-computer-icons-symbol-water-blue-drop-logo.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="1" column="3">
+     <property name="text">
+      <string>        3 km/h</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-wind-computer-icons-symbol-weather-forecasting-wea-5b00db754435f5.9986446215267828372794.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string> 16 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-download-cartoon-font-natural-yellow-sun-weather-5a8cd084555fc9.2840460115191778603497.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>    8 °C</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/cloud-github-cloud-computing-multicloud-readme-google-cloud-platform-amazon-web-services-rackspace-png-clipart.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="2" column="2">
+     <property name="text">
+      <string>   %2</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/png-transparent-drop-water-computer-icons-symbol-water-blue-drop-logo.png</normalon>
+      </iconset>
+     </property>
+    </item>
+    <item row="2" column="3">
+     <property name="text">
+      <string>        5 km/h</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normalon>../../Downloads/kisspng-wind-computer-icons-symbol-weather-forecasting-wea-5b00db754435f5.9986446215267828372794.jpg</normalon>
+      </iconset>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>50</y>
+      <width>301</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../Downloads/pngwing.com.png</pixmap>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>120</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string>7 °C</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>60</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Amsterdam</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>270</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ma, 10.29</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>650</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
