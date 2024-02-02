@@ -6,7 +6,10 @@ import time
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtWidgets,QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox
+from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from Ui_city_ import Ui_MainWindow as Ui_MainWindow_2
 from Ui_country_ import Ui_MainWindow as Ui_MainWindow_3
 
@@ -19,27 +22,48 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.setupUi(self)
         self.resize(650,850)       
         self.setWindowTitle("Weather App")
-        
-    # Hide Combobox and Label 
+     
         self.region_combobox.hide()
         self.city_line.hide()
-        self.frame.hide()
-
-        # Call the country
-        self.country_line.textChanged.connect(self.show_region_combobox)
-        text=self.country_line.text()
-        #QPushButton  clicked open 
+        
+        
+        #self.country_line.textChanged.connect(self.show_region_combobox)
+        
+        #QPushButton clicked open 
         self.search_button.clicked.connect(self.show_region_combobox)
 
         # Bölge seçildiğinde çağrılacak fonksiyonu bağla
         self.region_combobox.currentIndexChanged.connect(self.show_city_label)  
         
-    def show_region_combobox(self, text):
+    def show_region_combobox(self):
+        country = self.country_line.text()
+        if country=='Netherlands':
+            self.netherlands_regions(country)
+
+    def netherlands_regions(self, country):
+        regions = [
+            "Drenthe",
+            "Flevoland",
+            "Friesland",
+            "Gelderland",
+            "Groningen",
+            "Limburg",
+            "Noord-Brabant",
+            "Noord-Holland",
+            "Overijssel",
+            "Utrecht",
+            "Zuid-Holland",
+            "Zeeland"
+        ]
+
+        model = QStandardItemModel()
         
-        if text:  # Eğer text boş değilse
-            self.region_combobox.show()
-        else:
-            self.region_combobox.hide()
+        for region in regions:
+            item = QStandardItem(region)
+            model.appendRow(item)
+        self.region_combobox.setModel(model)
+        self.region_combobox.show()
+        
 
     def show_city_label(self, index):
         if index > 0:
