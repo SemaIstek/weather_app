@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\MainUser\Documents\GitHub\Sema\weather_app\country_.ui'
+# Form implementation generated from reading ui file 'c:\Users\MainUser\Documents\GitHub\Sema\weather_app\Main_A\country_.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.search_button.setStyleSheet("background-color: transparent")
         self.search_button.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\icons/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\Main_A\\icons/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.search_button.setIcon(icon)
         self.search_button.setObjectName("search_button")
         self.city_label = QtWidgets.QLabel(self.centralwidget)
@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.img_label.setGeometry(QtCore.QRect(320, 300, 301, 241))
         self.img_label.setStyleSheet("border-radius:10px;")
         self.img_label.setText("")
-        self.img_label.setPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\icons/pngwing.com.png"))
+        self.img_label.setPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\Main_A\\icons/pngwing.com.png"))
         self.img_label.setAlignment(QtCore.Qt.AlignCenter)
         self.img_label.setObjectName("img_label")
         self.temp_label = QtWidgets.QLabel(self.centralwidget)
@@ -82,7 +82,7 @@ class Ui_MainWindow(object):
 "")
         self.pushButton_3.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\icons/location.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\Main_A\\icons/location.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon1)
         self.pushButton_3.setIconSize(QtCore.QSize(25, 30))
         self.pushButton_3.setObjectName("pushButton_3")
@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setStyleSheet("background-color:transparent")
         self.pushButton_4.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\icons/multiple-users-silhouette.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\Main_A\\icons/multiple-users-silhouette.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setObjectName("pushButton_4")
         self.region_label = QtWidgets.QLabel(self.centralwidget)
@@ -99,20 +99,20 @@ class Ui_MainWindow(object):
         self.region_label.setStyleSheet("background-color:transparent")
         self.region_label.setAlignment(QtCore.Qt.AlignCenter)
         self.region_label.setObjectName("region_label")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(10, 110, 591, 31))
-        self.comboBox.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.region_combobox = QtWidgets.QComboBox(self.centralwidget)
+        self.region_combobox.setGeometry(QtCore.QRect(10, 110, 591, 31))
+        self.region_combobox.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "border-radius:10px;")
-        self.comboBox.setCurrentText("")
-        self.comboBox.setObjectName("comboBox")
+        self.region_combobox.setCurrentText("")
+        self.region_combobox.setObjectName("region_combobox")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(120, 740, 121, 91))
         self.pushButton.setStyleSheet("background-color: transparent;\n"
 "")
         self.pushButton.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\icons/weather-news.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("c:\\Users\\MainUser\\Documents\\GitHub\\Sema\\weather_app\\Main_A\\icons/weather-news.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon3)
         self.pushButton.setIconSize(QtCore.QSize(50, 50))
         self.pushButton.setObjectName("pushButton")
@@ -126,6 +126,12 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setStyleSheet("background-color: transparent;")
         self.label.setObjectName("label")
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(20, 220, 611, 381))
+        self.frame.setStyleSheet("background-color:transparent;")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
         self.population_label = QtWidgets.QLabel(self.centralwidget)
         self.population_label.setGeometry(QtCore.QRect(90, 450, 151, 16))
         self.population_label.setStyleSheet("background-color: transparent")
