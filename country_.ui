@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>850</height>
+   </rect>
+  </property>
   <property name="maximumSize">
    <size>
     <width>650</width>
@@ -15,25 +23,35 @@
    <string notr="true">background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="country_line">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>14</y>
-      <width>371</width>
-      <height>22</height>
+      <x>10</x>
+      <y>51</y>
+      <width>591</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color: white;
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>32766</number>
+    </property>
+    <property name="placeholderText">
+     <string>Choose a country...</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="search_button">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>10</y>
-      <width>93</width>
+      <x>580</x>
+      <y>50</y>
+      <width>91</width>
       <height>28</height>
      </rect>
     </property>
@@ -45,37 +63,10 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../weather_app/weather_app/icons/search.png</normaloff>../weather_app/weather_app/icons/search.png</iconset>
+      <normaloff>icons/search.png</normaloff>icons/search.png</iconset>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-background-color: rgb(226, 255, 252);</string>
-    </property>
-    <property name="text">
-     <string>Region</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="city_label">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -90,6 +81,9 @@ background-color: rgb(226, 255, 252);</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
     <property name="text">
      <string>Amsterdam</string>
     </property>
@@ -97,7 +91,7 @@ background-color: rgb(226, 255, 252);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="date_label">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -106,6 +100,9 @@ background-color: rgb(226, 255, 252);</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
     <property name="text">
      <string>ma, 10.29</string>
     </property>
@@ -113,21 +110,7 @@ background-color: rgb(226, 255, 252);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QFontComboBox" name="fontComboBox">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>70</y>
-      <width>226</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-background-color: rgb(255, 255, 255);</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="info_button">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -137,13 +120,15 @@ background-color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(193, 255, 230);</string>
+     <string notr="true">background-color: rgb(193, 255, 230);
+
+border-radius:10px;</string>
     </property>
     <property name="text">
      <string>click for more</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="img_label">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -152,17 +137,20 @@ background-color: rgb(255, 255, 255);</string>
       <height>241</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:10px;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Downloads/pngwing.com.png</pixmap>
+     <pixmap>icons/pngwing.com.png</pixmap>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="temp_label">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -188,128 +176,177 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QLineEdit" name="city_line">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>110</y>
-      <width>114</width>
-      <height>23</height>
+      <x>10</x>
+      <y>160</y>
+      <width>591</width>
+      <height>31</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label_14">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(226, 255, 252);</string>
-       </property>
-       <property name="text">
-        <string>City</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>460</y>
-      <width>114</width>
-      <height>18</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;</string>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="styleSheet">
-        <string notr="true">
-background-color:transparent</string>
-       </property>
-       <property name="text">
-        <string>population</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_10">
-       <property name="styleSheet">
-        <string notr="true">background-color: transparent</string>
-       </property>
-       <property name="text">
-        <string>873,338</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="placeholderText">
+     <string>Enter a city name...</string>
+    </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>480</y>
-      <width>120</width>
-      <height>18</height>
+      <width>93</width>
+      <height>28</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="styleSheet">
-        <string notr="true">
-background-color:transparent</string>
-       </property>
-       <property name="text">
-        <string>regio</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_9">
-       <property name="styleSheet">
-        <string notr="true">background-color: transparent</string>
-       </property>
-       <property name="text">
-        <string>North-Holland</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/location.png</normaloff>icons/location.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>30</height>
+     </size>
+    </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>650</width>
-     <height>26</height>
-    </rect>
-   </property>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>447</y>
+      <width>93</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/multiple-users-silhouette.png</normaloff>icons/multiple-users-silhouette.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLabel" name="region_label">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>490</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent</string>
+    </property>
+    <property name="text">
+     <string>North-Holland</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>591</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+
+border-radius:10px;</string>
+    </property>
+    <property name="currentText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>740</y>
+      <width>121</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/weather-news.png</normaloff>icons/weather-news.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>770</y>
+      <width>241</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string>Weather App</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="population_label">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>450</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent</string>
+    </property>
+    <property name="text">
+     <string>873,338</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
