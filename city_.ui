@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>850</height>
+    <height>825</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -23,7 +23,7 @@
    <string notr="true">background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="temp_widget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -222,6 +222,9 @@ background-color: transparent</string>
     <property name="showGrid">
      <bool>false</bool>
     </property>
+    <property name="gridStyle">
+     <enum>Qt::SolidLine</enum>
+    </property>
     <property name="rowCount">
      <number>3</number>
     </property>
@@ -406,7 +409,7 @@ background-color: transparent</string>
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="img_label">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -419,13 +422,13 @@ background-color: transparent</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Downloads/pngwing.com.png</pixmap>
+     <pixmap>icons/pngwing.com.png</pixmap>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="temp_label">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -451,7 +454,7 @@ background-color: transparent</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="city_label">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -466,6 +469,10 @@ background-color: transparent</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+</string>
+    </property>
     <property name="text">
      <string>Amsterdam</string>
     </property>
@@ -473,14 +480,18 @@ background-color: transparent</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="date_label">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>270</y>
+      <x>40</x>
+      <y>260</y>
       <width>171</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+</string>
     </property>
     <property name="text">
      <string>ma, 10.29</string>
@@ -489,16 +500,6 @@ background-color: transparent</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>650</width>
-     <height>26</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
