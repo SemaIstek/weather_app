@@ -55,31 +55,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         # Bölge seçildiğinde çağrılacak fonksiyonu bağla
           
         
-    # def show_region_combobox(self):
-    #     country = self.country_line.text().lower()
-    #     if country:
-    #         self.region_combobox.show()
-    #         self.region_combobox.currentIndexChanged.connect(self.show_city_label)
-    #         if country=='netherlands':
-    #             self.netherlands_regions(country)
 
-    # def netherlands_regions(self, country):
-    #     regions = [
-    #         "Drenthe",
-    #         "Flevoland",
-    #         "Friesland",
-    #         "Gelderland",
-    #         "Groningen",
-    #         "Limburg",
-    #         "Noord-Brabant",
-    #         "Noord-Holland",
-    #         "Overijssel",
-    #         "Utrecht",
-    #         "Zuid-Holland",
-    #         "Zeeland"
-    #     ]
-
-        # model = QStandardItemModel()
         
         # for region in regions:
         #     item = QStandardItem(region)
