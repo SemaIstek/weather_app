@@ -43,7 +43,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.city_line.textChanged.connect(self.show_city_data)
         self.region_combobox.currentIndexChanged.connect(self.show_city_line)
         
-        # self.load_loaction_infos()
+        self.load_loaction_infos()
         
         
         #self.country_line.textChanged.connect(self.show_region_combobox)
