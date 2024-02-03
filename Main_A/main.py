@@ -36,8 +36,12 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.city_line.hide()
         self.country_line.setPlaceholderText("Type country name")
         self.completer = QCompleter(self.get_country_names())
+        self.completer_city = QCompleter(self.fetch_distinct_cities())
+        self.city_line.setCompleter(self.completer_city)
         self.country_line.setCompleter(self.completer)
         self.country_line.textChanged.connect(self.show_country_data)
+        self.city_line.textChanged.connect(self.show_city_data)
+        self.region_combobox.currentIndexChanged.connect(self.show_city_line)
         
         # self.load_loaction_infos()
         
@@ -234,9 +238,16 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         # Set the completer's filtered list to matching country names
         self.completer.setModel(model)
 
-        if country==self.country_line.text():
-            self.populate_states()
-            self.region_combobox.show()
+        try:
+
+            if country==self.country_line.text():
+                self.populate_states()
+                self.region_combobox.show()
+        except:
+            pass
+        
+        self.region_combobox.setCurrentText("")
+        self.city_line.setText("")
 
         
     
@@ -254,6 +265,44 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         query = {"Country": selected_country}
         matching_states = self.collection.distinct("State", query)
         return matching_states
+    
+    def fetch_distinct_cities(self):
+        # Query MongoDB to fetch distinct states (regions) based on the selected country
+        selected_country = self.country_line.text()
+        selected_state = self.region_combobox.currentText()
+        query = {"Country": selected_country, "State": selected_state}
+        matching_cities = self.collection.distinct("City", query)
+        return matching_cities
+    
+    def show_city_data(self):
+        typed_text = self.city_line.text().title()  # Capitalize the first letter of each word
+        self.city_line.setText(typed_text)
+
+        model = QStandardItemModel()
+        if not typed_text:
+            self.completer.setModel(model)
+            return  # No need to query if the text is empty
+        selected_country = self.country_line.text()
+        selected_state = self.region_combobox.currentText()
+
+        # Create a regex pattern for case-insensitive matching
+        regex_pattern = f"^{re.escape(typed_text)}"  # Start with the typed text
+        query = {"Country": selected_country, "State": selected_state, "City": {"$regex": regex_pattern, "$options": "i"}}  # Case-insensitive regex search
+  
+
+        matching_cities = self.collection.distinct("City", query)
+
+        for city in matching_cities:
+            item = QStandardItem(city)
+            model.appendRow(item)
+
+        # Set the completer's filtered list to matching country names
+        self.completer_city.setModel(model)
+        self.city_line.show()
+
+    def show_city_line(self):
+        self.city_line.show()
+
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
