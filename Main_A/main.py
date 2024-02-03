@@ -20,14 +20,14 @@ import pymongo
 # client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
 # db = client["weather_app"]
 # collection = db["weather"]
-
+# client = pymongo.MongoClient("mongodb+srv://kdurukanmert:6gZk8x0IdL0vtZra@cluster0.mpnw7uc.mongodb.net/")
 class Main_Window(QMainWindow, Ui_MainWindow_3):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
         self.resize(650,850)       
         self.setWindowTitle("Weather App")
-        client = pymongo.MongoClient("mongodb+srv://kdurukanmert:6gZk8x0IdL0vtZra@cluster0.mpnw7uc.mongodb.net/")
+        client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
         db = client["weather_app"]
         collection = db["weather"]
         self.collection = collection
@@ -42,8 +42,9 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.country_line.textChanged.connect(self.show_country_data)
         self.city_line.textChanged.connect(self.show_city_data)
         self.region_combobox.currentIndexChanged.connect(self.show_city_line)
+        self.city_line.textChanged.connect(self.weather_update_city)
         
-        self.load_loaction_infos()
+        # self.load_loaction_infos()
         
         
         #self.country_line.textChanged.connect(self.show_region_combobox)
@@ -325,6 +326,22 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         file_path = os.path.join(os.getcwd(), "weather.json")
         with open(file_path, 'w', encoding="utf-8") as json_file:
             json.dump(weathers, json_file)
+
+    def weather_update_city(self):
+        typed_text = self.city_line.text().title()
+        selected_country = self.country_line.text()
+        selected_state = self.region_combobox.currentText()
+
+        regex_pattern = f"^{re.escape(typed_text)}"  # Start with the typed text
+        query = {"Country": selected_country, "State": selected_state, "City": {"$regex": regex_pattern, "$options": "i"}}  # Case-insensitive regex search
+  
+
+        matching_cities = self.collection.distinct("City", query)
+
+        if typed_text in matching_cities:
+            self.getWeather(typed_text)
+
+
 
 
     
