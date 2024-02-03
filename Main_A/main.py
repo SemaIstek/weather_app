@@ -80,7 +80,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         base_site_usa="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population"
         base_site_netherland="https://en.wikipedia.org/wiki/Municipalities_of_the_Netherlands"
         base_site_belgium="https://en.wikipedia.org/wiki/List_of_most_populous_municipalities_in_Belgium"
-        # collection.delete_many({})
+        collection.delete_many({})
     # USA
         response = requests.get(base_site_usa)
         html = response.content
