@@ -15,7 +15,6 @@ from Ui_country_ import Ui_MainWindow as Ui_MainWindow_3
 
 
 
-
 class Main_Window(QMainWindow, Ui_MainWindow_3):
     def __init__(self):
         super(Main_Window, self).__init__()
