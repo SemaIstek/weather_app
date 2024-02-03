@@ -6,7 +6,7 @@ import time
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtWidgets,QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox,QVBoxLayout, QWidget, QLineEdit, QCompleter
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
@@ -16,9 +16,10 @@ import requests
 from bs4 import BeautifulSoup
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
-db = client["weather_app"]
-collection = db["weather"]
+
+# client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
+# db = client["weather_app"]
+# collection = db["weather"]
 
 class Main_Window(QMainWindow, Ui_MainWindow_3):
     def __init__(self):
@@ -26,9 +27,18 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.setupUi(self)
         self.resize(650,850)       
         self.setWindowTitle("Weather App")
+        client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
+        db = client["weather_app"]
+        collection = db["weather"]
+        self.collection = collection
      
         self.region_combobox.hide()
         self.city_line.hide()
+        self.country_line.setPlaceholderText("Type country name")
+        self.completer = QCompleter(self.get_country_names())
+        self.country_line.setCompleter(self.completer)
+        self.country_line.textChanged.connect(self.show_country_data)
+        
         
         
         #self.country_line.textChanged.connect(self.show_region_combobox)
@@ -75,12 +85,12 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         else:
             self.city_line.hide()  
     
-    def load_loaction_infos():
+    def load_loaction_infos(self):
 
         base_site_usa="https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population"
         base_site_netherland="https://en.wikipedia.org/wiki/Municipalities_of_the_Netherlands"
         base_site_belgium="https://en.wikipedia.org/wiki/List_of_most_populous_municipalities_in_Belgium"
-        collection.delete_many({})
+        self.collection.delete_many({})
     # USA
         response = requests.get(base_site_usa)
         html = response.content
@@ -114,7 +124,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         data_to_insert = [{"Country": "USA", "City": city, "State": state, "Population": population} for city, state, population in zip(cities, states, populations)]
 
         # Insert the data into MongoDB collection
-        collection.insert_many(data_to_insert)
+        self.collection.insert_many(data_to_insert)
 
         print("USA Data has been inserted into MongoDB.")
 
@@ -151,7 +161,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         data_to_insert = [{"Country": "Netherland", "City": city, "State": state, "Population": population} for city, state, population in zip(cities, states, populations)]
 
         # Insert the data into MongoDB collection
-        collection.insert_many(data_to_insert)
+        self.collection.insert_many(data_to_insert)
 
         print("Netherland Data has been inserted into MongoDB.")
 
@@ -188,11 +198,39 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         data_to_insert = [{"Country": "Belgium", "City": city, "State": state, "Population": population} for city, state, population in zip(cities, states, populations)]
 
         # Insert the data into MongoDB collection
-        collection.insert_many(data_to_insert)
+        self.collection.insert_many(data_to_insert)
 
         print("Belgium Data has been inserted into MongoDB.")
     
+    def get_country_names(self):
+        # Query MongoDB to get a list of country names
+        country_names = self.collection.distinct("Country")
+        return country_names
+    
+    def show_country_data(self):
+        typed_text = self.country_line.text().capitalize()  # Capitalize the first letter
+        self.country_line.setText(typed_text)
 
+        model = QStandardItemModel()
+        if not typed_text:
+            self.completer.setModel(model)
+            return  # No need to query if the text is empty
+
+        # Create a regex pattern for case-insensitive matching
+        regex_pattern = f"^{re.escape(typed_text)}"  # Start with the typed text
+        query = {"Country": {"$regex": regex_pattern, "$options": "i"}}  # Case-insensitive regex search
+  
+
+        matching_countries = self.collection.distinct("Country", query)
+
+        for country in matching_countries:
+            item = QStandardItem(country)
+            model.appendRow(item)
+
+        # Set the completer's filtered list to matching country names
+        self.completer.setModel(model)
+
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app_window = Main_Window()
