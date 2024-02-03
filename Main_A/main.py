@@ -49,41 +49,41 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         #self.country_line.textChanged.connect(self.show_region_combobox)
         
         #QPushButton clicked open 
-        self.search_button.clicked.connect(self.show_region_combobox)
+        # self.search_button.clicked.connect(self.show_region_combobox)
 
         # Bölge seçildiğinde çağrılacak fonksiyonu bağla
           
         
-    def show_region_combobox(self):
-        country = self.country_line.text().lower()
-        if country:
-            self.region_combobox.show()
-            self.region_combobox.currentIndexChanged.connect(self.show_city_label)
-            if country=='netherlands':
-                self.netherlands_regions(country)
+    # def show_region_combobox(self):
+    #     country = self.country_line.text().lower()
+    #     if country:
+    #         self.region_combobox.show()
+    #         self.region_combobox.currentIndexChanged.connect(self.show_city_label)
+    #         if country=='netherlands':
+    #             self.netherlands_regions(country)
 
-    def netherlands_regions(self, country):
-        regions = [
-            "Drenthe",
-            "Flevoland",
-            "Friesland",
-            "Gelderland",
-            "Groningen",
-            "Limburg",
-            "Noord-Brabant",
-            "Noord-Holland",
-            "Overijssel",
-            "Utrecht",
-            "Zuid-Holland",
-            "Zeeland"
-        ]
+    # def netherlands_regions(self, country):
+    #     regions = [
+    #         "Drenthe",
+    #         "Flevoland",
+    #         "Friesland",
+    #         "Gelderland",
+    #         "Groningen",
+    #         "Limburg",
+    #         "Noord-Brabant",
+    #         "Noord-Holland",
+    #         "Overijssel",
+    #         "Utrecht",
+    #         "Zuid-Holland",
+    #         "Zeeland"
+    #     ]
 
-        model = QStandardItemModel()
+        # model = QStandardItemModel()
         
-        for region in regions:
-            item = QStandardItem(region)
-            model.appendRow(item)
-        self.region_combobox.setModel(model)
+        # for region in regions:
+        #     item = QStandardItem(region)
+        #     model.appendRow(item)
+        # self.region_combobox.setModel(model)
         
         
 
@@ -218,6 +218,8 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
     def show_country_data(self):
         typed_text = self.country_line.text().title()  # Capitalize the first letter of each word
         self.country_line.setText(typed_text)
+        self.region_combobox.setCurrentIndex(-1)
+
 
         model = QStandardItemModel()
         if not typed_text:
@@ -243,10 +245,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             if country==self.country_line.text():
                 self.populate_states()
                 self.region_combobox.show()
+                self.city_line.hide()
         except:
             pass
         
-        self.region_combobox.setCurrentText("")
         self.city_line.setText("")
 
         
@@ -301,7 +303,9 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.city_line.show()
 
     def show_city_line(self):
-        self.city_line.show()
+        if self.region_combobox.currentIndex() >= 0:
+            self.city_line.show()
+
 
     
 if __name__ == "__main__":
