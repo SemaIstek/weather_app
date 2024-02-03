@@ -53,9 +53,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         country = self.country_line.text().lower()
         if country:
             self.region_combobox.show()
+            self.show_country_data()
             self.region_combobox.currentIndexChanged.connect(self.show_city_label)
-            if country=='netherlands':
-                self.netherlands_regions(country)
+            
+                
 
     def netherlands_regions(self, country):
         regions = [
