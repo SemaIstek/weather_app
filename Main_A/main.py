@@ -39,6 +39,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.country_line.setCompleter(self.completer)
         self.country_line.textChanged.connect(self.show_country_data)
         
+        # self.load_loaction_infos()
         
         
         #self.country_line.textChanged.connect(self.show_region_combobox)
@@ -121,7 +122,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
                 states.append(state)
                 populations.append(population)
 
-        data_to_insert = [{"Country": "USA", "City": city, "State": state, "Population": population} for city, state, population in zip(cities, states, populations)]
+        data_to_insert = [{"Country": "United States Of America", "City": city, "State": state, "Population": population} for city, state, population in zip(cities, states, populations)]
 
         # Insert the data into MongoDB collection
         self.collection.insert_many(data_to_insert)
@@ -208,7 +209,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         return country_names
     
     def show_country_data(self):
-        typed_text = self.country_line.text().capitalize()  # Capitalize the first letter
+        typed_text = self.country_line.text().title()  # Capitalize the first letter of each word
         self.country_line.setText(typed_text)
 
         model = QStandardItemModel()
@@ -230,6 +231,26 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         # Set the completer's filtered list to matching country names
         self.completer.setModel(model)
 
+        if country==self.country_line.text():
+            self.populate_states()
+            self.region_combobox.show()
+
+        
+    
+    def populate_states(self):
+        selected_country = self.country_line.text()
+        self.region_combobox.clear()
+        query = {"Country":selected_country}
+
+        if selected_country:
+            matching_states = self.fetch_distinct_states(selected_country)
+            self.region_combobox.addItems(matching_states)
+
+    def fetch_distinct_states(self, selected_country):
+        # Query MongoDB to fetch distinct states (regions) based on the selected country
+        query = {"Country": selected_country}
+        matching_states = self.collection.distinct("State", query)
+        return matching_states
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
