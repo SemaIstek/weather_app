@@ -27,7 +27,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.setupUi(self)
         self.resize(650,850)       
         self.setWindowTitle("Weather App")
-        client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
+        client = pymongo.MongoClient("mongodb+srv://kdurukanmert:6gZk8x0IdL0vtZra@cluster0.mpnw7uc.mongodb.net/")
         db = client["weather_app"]
         collection = db["weather"]
         self.collection = collection
@@ -43,7 +43,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.city_line.textChanged.connect(self.show_city_data)
         self.region_combobox.currentIndexChanged.connect(self.show_city_line)
         
-        # self.load_loaction_infos()
+        self.load_loaction_infos()
         
         
         #self.country_line.textChanged.connect(self.show_region_combobox)
@@ -305,6 +305,26 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
     def show_city_line(self):
         if self.region_combobox.currentIndex() >= 0:
             self.city_line.show()
+            self.getWeather(self.city_line.text())
+
+    def getWeather(self, place):   
+        api_key = "117f044f4a9859852256841562b5e3a5"
+        units = "metric"
+        lang = "en"
+
+        url = f'https://api.openweathermap.org/data/2.5/weather?q={place}&appid={api_key}&units={units}&lang={lang}'
+
+        response  = requests.get(url)
+
+        print(response)
+        print(response.text)
+        print(response.json())
+
+        weathers = response.json()
+
+        file_path = os.path.join(os.getcwd(), "weather.json")
+        with open(file_path, 'w', encoding="utf-8") as json_file:
+            json.dump(weathers, json_file)
 
 
     
