@@ -47,12 +47,15 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.search_button.clicked.connect(self.show_region_combobox)
 
         # Bölge seçildiğinde çağrılacak fonksiyonu bağla
-        self.region_combobox.currentIndexChanged.connect(self.show_city_label)  
+          
         
     def show_region_combobox(self):
-        country = self.country_line.text()
-        if country=='Netherlands':
-            self.netherlands_regions(country)
+        country = self.country_line.text().lower()
+        if country:
+            self.region_combobox.show()
+            self.region_combobox.currentIndexChanged.connect(self.show_city_label)
+            if country=='netherlands':
+                self.netherlands_regions(country)
 
     def netherlands_regions(self, country):
         regions = [
@@ -76,11 +79,11 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             item = QStandardItem(region)
             model.appendRow(item)
         self.region_combobox.setModel(model)
-        self.region_combobox.show()
+        
         
 
     def show_city_label(self, index):
-        if index > 0:
+        if index >= 0:
             self.city_line.show()
         else:
             self.city_line.hide()  
