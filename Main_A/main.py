@@ -337,7 +337,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
                     "icon": f"https://openweathermap.org/img/wn/{weathers["list"][i]["weather"][0]["icon"]}@2x.png",
                     "temp": weathers["list"][i]["main"]["temp"],
                     "hour": weathers["list"][i]["dt_txt"][11:16],
-                    "date": f"{weathers["list"][i]["dt_txt"][0:10]}",
+                    "date": weathers["list"][i]["dt_txt"][0:10],
                     "wind": weathers["list"][i]["wind"]["speed"]
                 }
                 five_day.append(data)
@@ -354,12 +354,12 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             data = {
                 "name": place,
                 "province": self.region_combobox.currentText(),
-                "country": f"{weathers["city"]["country"]}",
+                "country": weathers["city"]["country"],
                 "current": {
-                    "condition_current": f"{weathers["list"][0]["weather"][0]["description"]}",
+                    "condition_current": weathers["list"][0]["weather"][0]["description"],
                     "icon": f"https://openweathermap.org/img/wn/{weathers["list"][0]["weather"][0]["icon"]}@2x.png",
-                    "temp" : f"{weathers["list"][0]["main"]["temp"]}",
-                    "date": f"{weathers["list"][0]["dt_txt"][0:10]}"
+                    "temp" : weathers["list"][0]["main"]["temp"],
+                    "date": weathers["list"][0]["dt_txt"][0:10]
                 },
                 "detail": {
                     "first_15h": result
