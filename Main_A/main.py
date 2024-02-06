@@ -6,22 +6,27 @@ import time
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtWidgets,QtCore
+from PyQt5.QtGui import QPixmap, QPainter, QPen
 from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox,QVBoxLayout, QWidget, QLineEdit, QCompleter
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from Ui_city_ import Ui_MainWindow as Ui_MainWindow_2
+#from Ui_city_ import Ui_MainWindow as Ui_MainWindow_City
 from Ui_country_ import Ui_MainWindow as Ui_MainWindow_3
+from city_detail import City_Main_Window as Ui_MainWindow_2
 import requests
 from bs4 import BeautifulSoup
 import pymongo
 import datetime
+from city_detail import *
 
 
 # client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
 # db = client["weather_app"]
 # collection = db["weather"]
 # client = pymongo.MongoClient("mongodb+srv://kdurukanmert:6gZk8x0IdL0vtZra@cluster0.mpnw7uc.mongodb.net/")
+
+        
 class Main_Window(QMainWindow, Ui_MainWindow_3):
     def __init__(self):
         super(Main_Window, self).__init__()
@@ -46,24 +51,69 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.city_line.textChanged.connect(self.show_city_data)
         self.region_combobox.currentIndexChanged.connect(self.show_city_line)
         self.city_line.textChanged.connect(self.weather_update_city)
-        
-        # self.load_loaction_infos()
-        
-        
-        #self.country_line.textChanged.connect(self.show_region_combobox)
-        
-        #QPushButton clicked open 
-        # self.search_button.clicked.connect(self.show_region_combobox)
-
-        # Bölge seçildiğinde çağrılacak fonksiyonu bağla
-          
-        
+        #self.population_label.textC
+        self.ui_main_3_window = None
+        self.ui_main_3 = None
+        # Load information from the JSON file on initialization
+        self.load_json_data()
+        self.info_button.clicked.connect(self.city_detail)
+        self.info_button.clicked.connect(self.close)
 
         
-        # for region in regions:
-        #     item = QStandardItem(region)
-        #     model.appendRow(item)
-        # self.region_combobox.setModel(model)
+    def city_detail(self):
+        self.close()
+        self.ui_main_3 = QtWidgets.QMainWindow()
+        self.ui_main_3 = Ui_MainWindow_2()
+        self.ui_main_3.show()
+        
+        
+       
+    def load_json_data(self):
+        # Path to the JSON file
+        file_path = os.path.join(os.getcwd(), "./weather.json")
+
+        try:
+            with open(file_path, 'r', encoding="utf-8") as json_file:
+                weather_data = json.load(json_file)
+                # Display relevant information in the UI
+                self.display_information(weather_data)
+        except FileNotFoundError:
+            print("No weather data found.")
+
+        # Extract and display relevant information (name, population, temperature, etc.)
+        #self.display_information(data)
+
+    def display_information(self, weather_data):
+        if "name" in weather_data:
+            city_name = weather_data["name"]
+            self.city_label.setText(f"{city_name}")
+
+        if "current" in weather_data and "date" in weather_data["current"]:
+            date = weather_data["current"]["date"]
+            self.date_label.setText(f"{date}")
+
+        if "current" in weather_data and "temp" in weather_data["current"]:
+            temperature = weather_data["current"]["temp"]
+            self.temp_label.setText(f"{temperature} °C")
+        if "province" in weather_data:
+            region = weather_data["province"]
+            self.region_label.setText(f"{region}")
+        if "current" in weather_data and "icon" in weather_data["current"]:
+            icon_url = weather_data["current"]["icon"]
+            self.update_icon_label(icon_url)
+        
+    def update_icon_label(self, icon_url):
+        pixmap = self.load_pixmap_from_url(icon_url)
+        if pixmap is not None:
+            self.img_label.setPixmap(pixmap)
+
+    def load_pixmap_from_url(self, url):
+        pixmap = QPixmap()
+        data = requests.get(url).content
+        pixmap.loadFromData(data)
+        return pixmap
+
+
         
         
 
@@ -281,6 +331,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         # Set the completer's filtered list to matching country names
         self.completer_city.setModel(model)
         self.city_line.show()
+        
 
     def show_city_line(self):
         if self.region_combobox.currentIndex() >= 0:
@@ -376,6 +427,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
 
             # print(data)
             self.collection2.insert_one(data)
+            
+            self.load_json_data()
+            
+    
 
         
 
@@ -392,6 +447,8 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
 
         if typed_text in matching_cities:
             self.getWeather(typed_text)
+            
+            
 
 
 
