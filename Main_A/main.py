@@ -15,6 +15,7 @@ from Ui_country_ import Ui_MainWindow as Ui_MainWindow_3
 import requests
 from bs4 import BeautifulSoup
 import pymongo
+import datetime
 
 
 # client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
@@ -30,7 +31,9 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
         db = client["weather_app"]
         collection = db["weather"]
+        collection2 = db["weather_condition"]
         self.collection = collection
+        self.collection2 = collection2
      
         self.region_combobox.hide()
         self.city_line.hide()
@@ -284,24 +287,97 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             self.city_line.show()
             self.getWeather(self.city_line.text())
 
-    def getWeather(self, place):   
+    def getWeather(self, place):
+        self.collection2.delete_many({}) 
         api_key = "117f044f4a9859852256841562b5e3a5"
         units = "metric"
         lang = "en"
 
+        url2 = f"https://api.openweathermap.org/data/2.5/forecast?q={place}&appid={api_key}&units={units}&lang={lang}"
         url = f'https://api.openweathermap.org/data/2.5/weather?q={place}&appid={api_key}&units={units}&lang={lang}'
 
-        response  = requests.get(url)
+        response  = requests.get(url2)
 
-        print(response)
-        print(response.text)
-        print(response.json())
+        # print(response)
+        # print(response.text)
+        # print(response.json())
 
         weathers = response.json()
 
-        file_path = os.path.join(os.getcwd(), "weather.json")
-        with open(file_path, 'w', encoding="utf-8") as json_file:
-            json.dump(weathers, json_file)
+        if (weathers["cod"] != "400"):
+
+                
+            # print(len(weathers["list"]))
+
+            result = []
+            five_day = []
+
+            hour = int(datetime.datetime.now().timetuple()[3])
+            print(hour)
+            if hour >= 21:
+                baslangic = 0
+            elif hour >= 18:
+                baslangic = 1
+            elif hour >= 15:
+                baslangic = 2
+            elif hour >= 12:
+                baslangic = 3
+            elif hour >= 9:
+                baslangic = 4
+            elif hour >= 6:
+                baslangic = 5
+            elif hour >= 3:
+                baslangic = 6
+            else:
+                baslangic = 7
+
+            for i in range(baslangic, len(weathers["list"]), 8):
+                data = {
+                    "condition": weathers["list"][i]["weather"][0]["description"],
+                    "icon": f"https://openweathermap.org/img/wn/{weathers["list"][i]["weather"][0]["icon"]}@2x.png",
+                    "temp": weathers["list"][i]["main"]["temp"],
+                    "hour": weathers["list"][i]["dt_txt"][11:16],
+                    "date": weathers["list"][i]["dt_txt"][0:10],
+                    "wind": weathers["list"][i]["wind"]["speed"]
+                }
+                five_day.append(data)
+
+            for i in range(1, 6):
+                data = {
+                    "condition": weathers["list"][i]["weather"][0]["description"],
+                    "icon": f"https://openweathermap.org/img/wn/{weathers["list"][i]["weather"][0]["icon"]}@2x.png",
+                    "temp": weathers["list"][i]["main"]["temp"],
+                    "hour": weathers["list"][i]["dt_txt"][11:16]
+                }
+                result.append(data)
+
+            data = {
+                "name": place,
+                "province": self.region_combobox.currentText(),
+                "country": weathers["city"]["country"],
+                "current": {
+                    "condition_current": weathers["list"][0]["weather"][0]["description"],
+                    "icon": f"https://openweathermap.org/img/wn/{weathers["list"][0]["weather"][0]["icon"]}@2x.png",
+                    "temp" : weathers["list"][0]["main"]["temp"],
+                    "date": weathers["list"][0]["dt_txt"][0:10]
+                },
+                "detail": {
+                    "first_15h": result
+                },
+                "next_5": five_day
+            }
+
+            file_path = os.path.join(os.getcwd(), "weather.json")
+            with open(file_path, 'w', encoding="utf-8") as json_file:
+                json.dump(data, json_file)
+            file_path = os.path.join(os.getcwd(), "weathers.json")
+            with open(file_path, 'w', encoding="utf-8") as json_file:
+                json.dump(weathers, json_file)
+
+            # print(data)
+            self.collection2.insert_one(data)
+
+        
 
     def weather_update_city(self):
         typed_text = self.city_line.text().title()
