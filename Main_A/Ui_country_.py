@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(650, 850)
         MainWindow.setMaximumSize(QtCore.QSize(650, 850))
-        MainWindow.setStyleSheet("background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));")
+        MainWindow.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0.134328 rgba(124, 0, 124, 255), stop:0.781095 rgba(205, 155, 255, 255), stop:0.98 rgba(255, 255, 255, 255), stop:1 rgba(0, 0, 0, 0))")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.country_line = QtWidgets.QLineEdit(self.centralwidget)
@@ -38,21 +38,23 @@ class Ui_MainWindow(object):
         self.city_label.setGeometry(QtCore.QRect(160, 220, 291, 71))
         font = QtGui.QFont()
         font.setFamily("Arial Black")
-        font.setPointSize(20)
+        font.setPointSize(22)
         font.setBold(True)
         font.setWeight(75)
         self.city_label.setFont(font)
-        self.city_label.setStyleSheet("background-color: transparent;")
+        self.city_label.setStyleSheet("background-color: transparent;\n"
+"color: rgb(255, 255, 255);")
         self.city_label.setAlignment(QtCore.Qt.AlignCenter)
         self.city_label.setObjectName("city_label")
         self.date_label = QtWidgets.QLabel(self.centralwidget)
         self.date_label.setGeometry(QtCore.QRect(20, 520, 171, 20))
-        self.date_label.setStyleSheet("background-color: transparent;")
+        self.date_label.setStyleSheet("background-color: transparent;\n"
+"color: rgb(255, 255, 255);")
         self.date_label.setAlignment(QtCore.Qt.AlignCenter)
         self.date_label.setObjectName("date_label")
         self.info_button = QtWidgets.QPushButton(self.centralwidget)
         self.info_button.setGeometry(QtCore.QRect(110, 650, 391, 28))
-        self.info_button.setStyleSheet("background-color: rgb(193, 255, 230);\n"
+        self.info_button.setStyleSheet("background-color: rgb(130, 115, 158);\n"
 "\n"
 "border-radius:10px;")
         self.info_button.setObjectName("info_button")
@@ -71,7 +73,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.temp_label.setFont(font)
-        self.temp_label.setStyleSheet("background-color: transparent;")
+        self.temp_label.setStyleSheet("background-color: transparent;\n"
+"color: rgb(255, 255, 255);")
         self.temp_label.setAlignment(QtCore.Qt.AlignCenter)
         self.temp_label.setObjectName("temp_label")
         self.city_line = QtWidgets.QLineEdit(self.centralwidget)
@@ -105,7 +108,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.region_label.setFont(font)
-        self.region_label.setStyleSheet("background-color:transparent")
+        self.region_label.setStyleSheet("background-color:transparent;\n"
+"color: rgb(255, 255, 255);")
         self.region_label.setAlignment(QtCore.Qt.AlignCenter)
         self.region_label.setObjectName("region_label")
         self.region_combobox = QtWidgets.QComboBox(self.centralwidget)
@@ -143,7 +147,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.population_label.setFont(font)
-        self.population_label.setStyleSheet("background-color: transparent")
+        self.population_label.setStyleSheet("background-color: transparent;\n"
+"color: rgb(255, 255, 255);")
         self.population_label.setAlignment(QtCore.Qt.AlignCenter)
         self.population_label.setObjectName("population_label")
         MainWindow.setCentralWidget(self.centralwidget)

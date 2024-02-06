@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   <string notr="true">background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0.134328 rgba(124, 0, 124, 255), stop:0.781095 rgba(205, 155, 255, 255), stop:0.98 rgba(255, 255, 255, 255), stop:1 rgba(0, 0, 0, 0))</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="country_line">
@@ -78,13 +78,14 @@ border-radius:10px;</string>
     <property name="font">
      <font>
       <family>Arial Black</family>
-      <pointsize>20</pointsize>
+      <pointsize>22</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Amsterdam</string>
@@ -103,7 +104,8 @@ border-radius:10px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>ma, 10.29</string>
@@ -122,7 +124,7 @@ border-radius:10px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(193, 255, 230);
+     <string notr="true">background-color: rgb(130, 115, 158);
 
 border-radius:10px;</string>
     </property>
@@ -170,7 +172,8 @@ border-radius:10px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>7 °C</string>
@@ -261,7 +264,8 @@ border-radius:10px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:transparent</string>
+     <string notr="true">background-color:transparent;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>North-Holland</string>
@@ -357,7 +361,8 @@ border-radius:10px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent</string>
+     <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>873,338</string>
