@@ -3,51 +3,45 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox,QVBoxLayout, QW
 from PyQt5.QtCore import Qt, QUrl, pyqtSignal
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtGui import QIcon
-from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QStyleOptionViewItem,QLabel
 from PyQt5 import uic
 import requests
 from bs4 import BeautifulSoup
 import pymongo
-import datetime
 from Ui_city_ import *
 import sys, os
 import json
 
-
 class City_Main_Window(QMainWindow, Ui_MainWindow):
     main = pyqtSignal(bool)
+    
     def __init__(self):
         super(City_Main_Window, self).__init__()
         self.ui = uic.loadUi('./Main_A/city_.ui', self)
-        #self.setupUi(self)
-        self.resize(700,900)       
+        self.resize(700, 900)
         self.setWindowTitle("Weather App")
-        self.load_json_data()
+        self.load_mongodb_data()  
 
         self.returnButton.clicked.connect(self.mainPage)
         self.returnButton.clicked.connect(self.close)
-        
+
     def mainPage(self):
         self.close()
         self.main.emit(True)
 
-        
-    def load_json_data(self):
-        # Path to the JSON file
-        file_path = os.path.join(os.getcwd(), "./weather.json")
+    def load_mongodb_data(self):
+        # MongoDB bağlantısı
+        client = pymongo.MongoClient("mongodb+srv://serkanbakisgan:1HDz6rhbbN4bjMQF@cluster0.8v7bpzg.mongodb.net/")
+        db = client["weather_app"]
+        collection = db["weather_condition"]
+        self.collection = collection
 
-        try:
-            with open(file_path, 'r', encoding="utf-8") as json_file:
-                weather_data = json.load(json_file)
-                # Display relevant information in the UI
-                self.display_information(weather_data)
-        except FileNotFoundError:
-            print("No weather data found.")
-
-        # Extract and display relevant information (name, population, temperature, etc.)
-        #self.display_information(data)
+        # Veritabanından veriyi çek
+        weather_data = collection.find_one()
+        if weather_data:
+             self.display_information(weather_data)
+        else:
+            print("No weather data found in MongoDB.")
 
     def display_information(self, weather_data):
         if "name" in weather_data:
@@ -82,10 +76,20 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
 
                 # Tabloya verileri ekle
                 for row, day_data in enumerate(next_5_data):
-                    self.tableWidget_days.setItem(row, 0, QTableWidgetItem(str(day_data.get("date", ""))))
-                    self.tableWidget_days.setItem(row, 1, QTableWidgetItem(str(day_data.get("condition", ""))))
-                    self.tableWidget_days.setItem(row, 2, QTableWidgetItem(str(day_data.get("temp", ""))))
-                    self.tableWidget_days.setItem(row, 3, QTableWidgetItem(str(day_data.get("wind", ""))))
+                    date_item = QTableWidgetItem(str(day_data.get("date", "")))
+                    condition_item = QTableWidgetItem(str(day_data.get("condition", "")))
+
+                    # Temp değerini round yap ve derece simgesini ekle
+                    temp_value = day_data.get("temp", "")
+                    rounded_temp = round(temp_value) if temp_value != "" else ""
+                    temp_item = QTableWidgetItem(f"{rounded_temp} °C")
+
+                    wind_item = QTableWidgetItem(str(day_data.get("wind", "")))
+
+                    self.tableWidget_days.setItem(row, 0, date_item)
+                    self.tableWidget_days.setItem(row, 1, condition_item)
+                    self.tableWidget_days.setItem(row, 2, temp_item)
+                    self.tableWidget_days.setItem(row, 3, wind_item)
 
                     # İconları eklemek için QLabel oluştur
                     icon_label = QLabel()
@@ -93,9 +97,9 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
                     if icon_pixmap is not None:
                         icon_label.setPixmap(icon_pixmap)
                     self.tableWidget_days.setCellWidget(row, 4, icon_label)
+
                 for col in range(self.tableWidget_days.columnCount()):
                     self.tableWidget_days.horizontalHeaderItem(col).setTextAlignment(Qt.AlignCenter)
-
 
         self.display_3_hour_forecast(weather_data)
     def display_3_hour_forecast(self, weather_data):
