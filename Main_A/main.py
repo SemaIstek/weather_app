@@ -355,7 +355,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
 
         weathers = response.json()
 
-        if (weathers["cod"] != "400"):
+        if (weathers["cod"] != "400" and weathers["cod"] != "401"):
 
                 
             # print(len(weathers["list"]))
