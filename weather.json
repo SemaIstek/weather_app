@@ -2,10 +2,11 @@
   "name": "Alkmaar",
   "province": "North Holland",
   "country": "NL",
+  "population": "111,834",
   "current": {
     "condition_current": "overcast clouds",
     "icon": "https://openweathermap.org/img/wn/04n@2x.png",
-    "temp": 2.37,
+    "temp": 2.12,
     "date": "2024-02-08"
   },
   "detail": {
@@ -13,7 +14,7 @@
       {
         "condition": "overcast clouds",
         "icon": "https://openweathermap.org/img/wn/04n@2x.png",
-        "temp": 2.13,
+        "temp": 2.01,
         "hour": "03:00"
       },
       {
@@ -46,7 +47,7 @@
     {
       "condition": "overcast clouds",
       "icon": "https://openweathermap.org/img/wn/04n@2x.png",
-      "temp": 2.37,
+      "temp": 2.12,
       "hour": "00:00",
       "date": "2024-02-08",
       "wind": 0.47

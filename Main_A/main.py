@@ -309,7 +309,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
     
     def fetch_city_data(self, place):
         query = {"City": place}
-        match_data = self.collection.find_one()
+        match_data = self.collection.find_one(query)
+        self.city = match_data
+        print(match_data)
+        return match_data
     
     def show_city_data(self):
         typed_text = self.city_line.text().title()  # Capitalize the first letter of each word
@@ -411,7 +414,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
                 "name": place,
                 "province": self.region_combobox.currentText(),
                 "country": weathers["city"]["country"],
-                "population": "",
+                "population": self.city['Population'],
                 "current": {
                     "condition_current": weathers["list"][0]["weather"][0]["description"],
                     "icon": f'https://openweathermap.org/img/wn/{weathers["list"][0]["weather"][0]["icon"]}@2x.png',
@@ -452,6 +455,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         matching_cities = self.collection.distinct("City", query)
 
         if typed_text in matching_cities:
+            self.fetch_city_data(typed_text)
             self.getWeather(typed_text)
             
             
