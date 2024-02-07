@@ -307,6 +307,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         matching_cities = self.collection.distinct("City", query)
         return matching_cities
     
+    def fetch_city_data(self, place):
+        query = {"City": place}
+        match_data = self.collection.find_one()
+    
     def show_city_data(self):
         typed_text = self.city_line.text().title()  # Capitalize the first letter of each word
         self.city_line.setText(typed_text)
@@ -386,7 +390,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             for i in range(baslangic, len(weathers["list"]), 8):
                 data = {
                     "condition": weathers["list"][i]["weather"][0]["description"],
-                    "icon": f"https://openweathermap.org/img/wn/{weathers["list"][i]["weather"][0]["icon"]}@2x.png",
+                    "icon": f'https://openweathermap.org/img/wn/{weathers["list"][i]["weather"][0]["icon"]}@2x.png',
                     "temp": weathers["list"][i]["main"]["temp"],
                     "hour": weathers["list"][i]["dt_txt"][11:16],
                     "date": weathers["list"][i]["dt_txt"][0:10],
