@@ -94,8 +94,9 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             self.date_label.setText(f"{date}")
 
         if "current" in weather_data and "temp" in weather_data["current"]:
-            temperature = weather_data["current"]["temp"]
+            temperature = round(weather_data["current"]["temp"])
             self.temp_label.setText(f"{temperature} °C")
+             
         if "province" in weather_data:
             region = weather_data["province"]
             self.region_label.setText(f"{region}")

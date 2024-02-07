@@ -22,7 +22,7 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
         super(City_Main_Window, self).__init__()
         self.ui = uic.loadUi('./Main_A/city_.ui', self)
         #self.setupUi(self)
-        self.resize(700,850)       
+        self.resize(700,900)       
         self.setWindowTitle("Weather App")
         self.load_json_data()
 
@@ -59,7 +59,7 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
             self.date_label.setText(f"{date}")
 
         if "current" in weather_data and "temp" in weather_data["current"]:
-            temperature = weather_data["current"]["temp"]
+            temperature = round(weather_data["current"]["temp"])
             self.temp_label.setText(f"{temperature} °C")
         
         if "current" in weather_data and "icon" in weather_data["current"]:
