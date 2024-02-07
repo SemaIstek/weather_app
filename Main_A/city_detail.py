@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QPixmap, QPainter, QPen
 from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox,QVBoxLayout, QWidget, QLineEdit, QCompleter
-from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtCore import Qt, QUrl, pyqtSignal
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtGui import QIcon
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
@@ -15,7 +15,9 @@ from Ui_city_ import *
 import sys, os
 import json
 
+
 class City_Main_Window(QMainWindow, Ui_MainWindow):
+    main = pyqtSignal(bool)
     def __init__(self):
         super(City_Main_Window, self).__init__()
         self.ui = uic.loadUi('./Main_A/city_.ui', self)
@@ -23,7 +25,13 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
         self.resize(700,850)       
         self.setWindowTitle("Weather App")
         self.load_json_data()
+
+        self.returnButton.clicked.connect(self.mainPage)
+        self.returnButton.clicked.connect(self.close)
         
+    def mainPage(self):
+        self.close()
+        self.main.emit(True)
 
         
     def load_json_data(self):

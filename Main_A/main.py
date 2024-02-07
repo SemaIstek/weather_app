@@ -62,9 +62,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         
     def city_detail(self):
         self.close()
-        self.ui_main_3 = QtWidgets.QMainWindow()
+        # self.ui_main_3 = QtWidgets.QMainWindow()
         self.ui_main_3 = Ui_MainWindow_2()
         self.ui_main_3.show()
+        self.ui_main_3.main.connect(self.show)
         
         
        
@@ -406,6 +407,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
                 "name": place,
                 "province": self.region_combobox.currentText(),
                 "country": weathers["city"]["country"],
+                "population": "",
                 "current": {
                     "condition_current": weathers["list"][0]["weather"][0]["description"],
                     "icon": f"https://openweathermap.org/img/wn/{weathers["list"][0]["weather"][0]["icon"]}@2x.png",
