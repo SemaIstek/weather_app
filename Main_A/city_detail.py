@@ -61,7 +61,7 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
         if "current" in weather_data and "temp" in weather_data["current"]:
             temperature = round(weather_data["current"]["temp"])
             self.temp_label.setText(f"{temperature} °C")
-        
+            
         if "current" in weather_data and "icon" in weather_data["current"]:
             icon_url = weather_data["current"]["icon"]
             self.update_icon_label(icon_url)
