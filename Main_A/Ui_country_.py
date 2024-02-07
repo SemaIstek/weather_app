@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.search_button.setIcon(icon)
         self.search_button.setObjectName("search_button")
         self.city_label = QtWidgets.QLabel(self.centralwidget)
-        self.city_label.setGeometry(QtCore.QRect(160, 220, 291, 71))
+        self.city_label.setGeometry(QtCore.QRect(90, 220, 411, 71))
         font = QtGui.QFont()
         font.setFamily("Arial Black")
         font.setPointSize(22)
