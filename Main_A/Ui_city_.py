@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(700, 871)
         MainWindow.setMaximumSize(QtCore.QSize(700, 1000))
-        MainWindow.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0.134328 rgba(124, 0, 124, 255), stop:0.781095 rgba(205, 155, 255, 255), stop:1 rgba(255, 255, 255, 255))")
+        MainWindow.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(107, 37, 133, 255), stop:1 rgba(255, 255, 255, 255));")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tableWidget_days = QtWidgets.QTableWidget(self.centralwidget)
@@ -25,7 +25,8 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(8)
         self.tableWidget_days.setFont(font)
-        self.tableWidget_days.setStyleSheet("background-color: rgb(130, 115, 158);\n"
+        self.tableWidget_days.setStyleSheet("border-radius: 20px;\n"
+"background-color: rgb(130, 114, 157);\n"
 "")
         self.tableWidget_days.setShowGrid(False)
         self.tableWidget_days.setGridStyle(QtCore.Qt.SolidLine)
@@ -83,7 +84,7 @@ class Ui_MainWindow(object):
         self.city_label.setAlignment(QtCore.Qt.AlignCenter)
         self.city_label.setObjectName("city_label")
         self.date_label = QtWidgets.QLabel(self.centralwidget)
-        self.date_label.setGeometry(QtCore.QRect(50, 180, 261, 20))
+        self.date_label.setGeometry(QtCore.QRect(60, 180, 261, 20))
         font = QtGui.QFont()
         font.setFamily("Arial Black")
         font.setPointSize(14)
@@ -155,33 +156,34 @@ class Ui_MainWindow(object):
         self.img_label_5.setObjectName("img_label_5")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 270, 161, 251))
-        self.label.setStyleSheet("background-color: rgb(130, 115, 158);\n"
-"border-radius:10px;")
+        self.label.setStyleSheet("border-radius: 20px;\n"
+"background-color: rgb(130, 114, 157);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(190, 270, 161, 251))
-        self.label_2.setStyleSheet("background-color: rgb(130, 115, 158);\n"
-"border-radius:10px;")
+        self.label_2.setStyleSheet("border-radius: 20px;\n"
+"background-color: rgb(130, 114, 157);")
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(360, 270, 161, 251))
-        self.label_3.setStyleSheet("background-color: rgb(130, 115, 158);\n"
-"border-radius:10px;")
+        self.label_3.setStyleSheet("border-radius: 20px;\n"
+"background-color: rgb(130, 114, 157);")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(530, 270, 161, 251))
-        self.label_4.setStyleSheet("background-color: rgb(130, 115, 158);\n"
-"border-radius:10px;")
+        self.label_4.setStyleSheet("border-radius: 20px;\n"
+"background-color: rgb(130, 114, 157);")
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
         self.returnButton = QtWidgets.QPushButton(self.centralwidget)
         self.returnButton.setGeometry(QtCore.QRect(550, 800, 121, 31))
-        self.returnButton.setStyleSheet("background: rgb(170, 170, 255);\n"
+        self.returnButton.setStyleSheet("background-color: rgb(173, 173, 173);\n"
 "border-radius:10px;\n"
-"color: white")
+"\n"
+"")
         self.returnButton.setObjectName("returnButton")
         self.label_4.raise_()
         self.label_3.raise_()

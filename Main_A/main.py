@@ -54,6 +54,8 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         #self.population_label.textC
         self.ui_main_3_window = None
         self.ui_main_3 = None
+        
+            
         # Load information from the JSON file on initialization
         self.load_json_data()
         self.info_button.clicked.connect(self.city_detail)
@@ -78,6 +80,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
                 weather_data = json.load(json_file)
                 # Display relevant information in the UI
                 self.display_information(weather_data)
+                
         except FileNotFoundError:
             print("No weather data found.")
 
@@ -105,10 +108,15 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             icon_url = weather_data["current"]["icon"]
             self.update_icon_label(icon_url)
         
+        
+        
+        
+        
     def update_icon_label(self, icon_url):
         pixmap = self.load_pixmap_from_url(icon_url)
         if pixmap is not None:
-            self.img_label.setPixmap(pixmap)
+            scaled_pixmap = pixmap.scaled(150, 150, aspectRatioMode=Qt.KeepAspectRatio)
+            self.img_label.setPixmap(scaled_pixmap)
 
     def load_pixmap_from_url(self, url):
         pixmap = QPixmap()
@@ -342,12 +350,13 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         self.completer_city.setModel(model)
         self.city_line.show()
         
+        
 
     def show_city_line(self):
         if self.region_combobox.currentIndex() >= 0:
             self.city_line.show()
             self.getWeather(self.city_line.text())
-
+            
     def getWeather(self, place):
         self.collection2.delete_many({}) 
         api_key = "117f044f4a9859852256841562b5e3a5"
@@ -441,6 +450,8 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
             
             self.load_json_data()
             
+
+            
     
 
         
@@ -449,6 +460,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         typed_text = self.city_line.text().title()
         selected_country = self.country_line.text()
         selected_state = self.region_combobox.currentText()
+        
 
         regex_pattern = f"^{re.escape(typed_text)}"  # Start with the typed text
         query = {"Country": selected_country, "State": selected_state, "City": {"$regex": regex_pattern, "$options": "i"}}  # Case-insensitive regex search
@@ -459,6 +471,10 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
         if typed_text in matching_cities:
             self.fetch_city_data(typed_text)
             self.getWeather(typed_text)
+            back=self.load_pixmap_from_url("https://e0.pxfuel.com/wallpapers/347/577/desktop-wallpaper-purple-cloud.jpg")
+            if back is not None:
+                scaled_pixmap = back.scaled(1000, 1500, aspectRatioMode=Qt.KeepAspectRatio)
+                self.background_label.setPixmap(scaled_pixmap)
             
             
 
