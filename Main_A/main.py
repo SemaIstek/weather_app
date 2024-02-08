@@ -115,7 +115,7 @@ class Main_Window(QMainWindow, Ui_MainWindow_3):
     def update_icon_label(self, icon_url):
         pixmap = self.load_pixmap_from_url(icon_url)
         if pixmap is not None:
-            scaled_pixmap = pixmap.scaled(150, 150, aspectRatioMode=Qt.KeepAspectRatio)
+            scaled_pixmap = pixmap.scaled(100, 100, aspectRatioMode=Qt.KeepAspectRatio)
             self.img_label.setPixmap(scaled_pixmap)
 
     def load_pixmap_from_url(self, url):
