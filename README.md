@@ -68,10 +68,10 @@ PyQt5 is employed to create a GUI that allows users to select cities and states 
 
 ## Contributors
 
-- [Sema Istek]
-- [Kemal Mert]
-- [Serkan Bakisgan]
-- [Melike Bilgin Can]
+- Sema Istek
+- Kemal Mert
+- Serkan Bakisgan
+- Melike Bilgin Can
 
 ## Acknowledgments
 
