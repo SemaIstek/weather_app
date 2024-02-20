@@ -82,7 +82,7 @@ class City_Main_Window(QMainWindow, Ui_MainWindow):
                     # Temp değerini round yap ve derece simgesini ekle
                     temp_value = day_data.get("temp", "")
                     rounded_temp = round(temp_value) if temp_value != "" else ""
-                    temp_item = QTableWidgetItem(f"{rounded_temp} °C")
+                    temp_item = QTableWidgetItem(f"{rounded_temp} ")
 
                     wind_item = QTableWidgetItem(str(day_data.get("wind", "")))
 
